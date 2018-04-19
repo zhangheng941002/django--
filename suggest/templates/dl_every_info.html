@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block denglu %}
+  <li><a href="/user/logout" >退出</a></li>
+{% endblock %}
+{% block sousuo %}
+
+{% endblock %}
+
+
+{% block js %}
+
+	btn.onclick=function(){
+    alert()
+}
+
+{% endblock %}
+
+
+{% block css %}
+<style type="text/css">
+	.msg-text{
+		border:1px solid #aaa;
+		width:800px;
+		height:200px;
+		min-height: 200px;
+		height:auto!important;
+		padding:20px;
+		border-radius:7px;
+	}
+	.msg-box{
+		width: 300px;
+		border-bottom: 1px dashed #ccc;
+	}
+	.xq{
+		line-height: 35px;
+		text-indent:10px;
+	}
+	span{
+		display: inline-block;
+		width:90px;
+		line-height: 30px;
+		text-indent:10px;
+	}
+	.info-jr{
+		margin:20px 0 100px;
+	}
+	.info-jr input{
+		border:1px solid #aaa;
+		border-radius:4px;
+		outline: none;
+	}
+</style>
+{% endblock %}
+
+{% block center %}
+    <div id="center" style="margin-left: 50px">
+        <form action="/sug/chuli/" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="ycid" value="{{ sug.id }}"><!-- 
+{#            创意标题：&nbsp;{{ sug.title }}<br><br>#}
+{#            发表人：&nbsp;{{ sug.uname }}<br><br>#}
+{#            详情：<br><textarea name="content" id="content" cols="100" rows=5" style="resize:none" readonly>{{ sug.content }}</textarea><br>#} -->
+
+            <div class="msg-box"><span>创意标题：</span>{{ sug.title }}</div>
+            <div class="msg-box"><span>发 表 人 ：</span>{{ sug.uname }}</div>
+
+
+
+
+            <div class="xq">详情：</div>
+            <div class="msg-text">{{ sug.content }}</div>
+
+            附件：<a href="/user/load/?ld={{ sug.filename }}"><div class="fujian" name="fjxz" id="btn">{{ sug.filename }}</div></a>
+           <div class="info-jr">
+           进入： <input style="margin-left: 0px" type="submit" value="管理中心">
+           </div>
+        </form>
+    </div>
+{% endblock %}

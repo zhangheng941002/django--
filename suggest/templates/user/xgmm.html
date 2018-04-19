@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block sousuo %}
+
+{% endblock %}
+
+
+{% block denglu %}
+  <li><a href="/user/logout" >退出</a></li>
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+	form{
+		width:400px;
+		height:200px;
+		background: #eee;
+		border:1px solid #aaa;
+		margin:100px auto;
+		border-radius:7px;
+		padding:30px 0 0 70px;
+	}
+	.submit{
+		margin-left:85px;
+		width:70px;
+		height:35px;
+		border:1px solid #aaa;
+		background: #034c0d;
+		border-radius:8px;
+		text-align:center;
+		line-height:30px;
+		color:#fff;
+		font-size:16px;
+		font-weight:bold;
+	}
+</style>
+{% endblock %}
+
+{% block reg %}
+{#    写一个form 表单，原密码，新密码，提交#}
+    <form action="/user/xgmm/" method="post">
+    	{% csrf_token %}
+    	原密码：<input class="pwd" type="password" name="pwd"><br/><br>
+    	新密码：<input class="npwd" type="password" name="newpwd"><br><br>
+    	<input class="submit" type="submit" value="提交">
+    </form>
+
+{% endblock %}

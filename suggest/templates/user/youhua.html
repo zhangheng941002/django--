@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block denglu %}
+  <li><a href="/user/logout" >退出</a></li>
+{% endblock %}
+
+
+{% block css %}
+<style type="text/css">
+    #center{
+        width:750px;
+        margin:0 auto 100px;
+    }
+    input[name="tijiao"]{
+        width:60px;
+        height:30px;
+        outline: none;
+        border:1px solid #aaa;
+        border-radius:5px;
+        font-size:16px;
+        float:right;
+        margin: 0 30px;
+    }
+</style>
+{% endblock %}
+
+{% block sousuo %}
+
+{% endblock  %}
+
+{% block center %}
+    <div id="center">
+        <form action="/user/selove_sug/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            分类：<select name="fl" id="fl" >
+                <option value="成本节约">成本节约</option>
+                <option value="员工激励">员工激励</option>
+                <option value="质量改善">质量改善</option>
+                <option value="设备改善">设备改善</option>
+                <option value="安全改善">安全改善</option>
+                <option value="环境改善">环境改善</option>
+                <option value="管理改善">管理改善</option>
+                <option value="其他">其他</option>
+
+            </select><br><br>
+            标题：<input type="text" name="title" style="width:300px;" ><br><br>
+            内容：<br><textarea name="content" id="content" cols="100" rows="10" style="resize:none"></textarea><br>
+            插入附件：<input style="margin-top:10px;" type="file" name="fujian"><br>
+            <input type="submit" name="tijiao" value="提交">
+        </form>
+    </div>
+{% endblock %}

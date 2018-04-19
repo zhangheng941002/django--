@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% block sousuo %}
+
+{% endblock %}
+
+{% block css %}
+
+<style type="text/css">
+
+	#div1{
+		margin:0 auto;
+		width:500px;
+		height:500px;
+	}
+	#div1 form{
+		border:1px solid #aaa;
+		width:500px;
+		padding:25px 20px 25px 100px;
+		background: #eee;
+		border-radius:7px;
+		margin:0 auto;
+	}
+	.syzm{
+		margin-left:25px;
+		margin-bottom:-10px;
+		display: inline-block;
+		padding:5px;
+		border-radius:5px;
+		background: yellowgreen;
+		width:55px;
+		height:30px;
+		text-align:center;
+	}
+	#dl{
+		margin: 25px 0 0 50px;
+		height:30px;
+		border-radius: 5px;
+		border:1px solid #aaa;
+		font-size:16px;
+	}
+	.pwd-box{
+		position:relative;
+	}
+	.error{
+		position: absolute;
+		right:0;
+		top:3px;
+		display: none;
+		color:#f00;
+	}
+	.error-user{
+		position: absolute;
+		top:3px;
+		right:0;
+		color:#f00;
+	}
+	.email{
+		position: relative;
+	}
+	.email-error{
+		position: absolute;
+		right:0;
+		top:3px;
+		color:#f00;
+	}
+	.shuaxin{
+		width:40px;
+		height:30px;
+		text-align:center;
+		line-height: 30px;
+		margin-left:15px;
+		display: inline-block;
+		border:1px solid #369;
+		background: #eee;
+		border-radius:5px;
+		
+	}
+	.shuaxin:hover{
+		text-decoration: none;
+	}
+</style>
+
+{% endblock %}
+
+
+{% block js %}
+
+	
+
+    <script type="text/javascript">
+
+    	var pwd = document.getElementById("pwd");
+    	var cpwd = document.getElementById("cpwd");
+    	var error = document.querySelector(".error");
+
+    	cpwd.onblur = function(){
+    		if(pwd.value !== cpwd.value){
+    			error.style.display = "inline-block";
+    			cpwd.value = '';
+    		}else{
+    			error.style.display = "none";
+    		}
+    	};
+
+    $("#user_name").blur(function(){
+    
+    	check_user_name();
+    });
+
+    function check_user_name(){
+		var len = $('#user_name').val().length;
+
+		if($("#user_name").val().length < 6 || $("#user_name").val().length > 20){
+			$('#user_name').next().html('长度应为6-20').show();
+		}else{
+			$('#user_name').next().hide();
+		    $.get('/user/register_exist/?uname='+$('#user_name').val(),function(data){
+		    	
+		        if(data.count==1){
+		            $('#user_name').next().html('用户名已经存在').show();
+		            
+		        }else{
+			        $('#user_name').next().hide();
+			       
+		        }
+		    });
+
+		}
+
+	}
+
+
+	$("#email").blur(function(){
+		check_email();
+	})
+	function check_email(){
+		var re = /^[a-z0-9][\w\.\-]*@[a-z0-9\-]+(\.[a-z]{2,5}){1,2}$/;
+
+		if(re.test($('#email').val()))
+		{
+			$('#email').next().hide();
+			
+		}
+		else
+		{
+			$('#email').next().html('邮箱格式不正确')
+			$('#email').next().show();
+			
+		}
+
+	}
+
+	window.onload = function(){
+		yan_zheng_ma();
+	};
+
+
+	 function yan_zheng_ma(){
+		
+
+		    $.get('/user/yanzhengma/',function(data){
+		    	
+		        $(".syzm").text(data.st);
+		    });
+	}
+
+
+    </script>
+
+
+{% endblock %}
+
+
+
+{% block reg %}
+    <div id="div1">
+
+        <form action="/user/register/" method="post">
+            {% csrf_token %}
+            <div style="position:relative;">
+            用 户 名 ： <input type="text" name="username" id="user_name" value="{{ un }}"><span class="error-user"></span></div>
+        	</br>
+
+            <div class="pwd-box">
+            密　　码：<input type="password" id="pwd" value="{{ pwd }}" name="password">　<span class="error">两次密码不一样</span></div><br>
+            确认密码：<input type="password" value="{{ mm }}" id="cpwd" name="password2"></br></br>
+
+            <div class="email">
+            邮　　箱：<input type="text" id="email" value="{{ em }}" name="email">
+            <span class="email-error">{{ ema }}</span>
+        	</div><br>
+        	 验 证 码 ： <input type="text"name="yzm" style="width: 80px;" value="{{ yzm }}"><span class="syzm" name="scyam"></span><a class="shuaxin" href="/user/register/">刷新</a>
+            </br>
+      
+            <input id="dl" name="dl" type="submit" value="注册" style="width: 150px">
+        </form>
+
+
+    </div>
+
+
+
+{% endblock reg %}

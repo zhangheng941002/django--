@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static from staticfiles %}
+
+
+<head>
+
+  <script type="text/javascript" src="/static/js/jquery-2.0.2.js"></script>
+    <meta charset="UTF-8">
+    <title>若谷集团</title>
+    <style type="text/css">
+
+      .input-group.selt-box{
+        margin:0 auto;
+      }
+      .selt-box .selt-btn,.selt-box .select{
+        float:left;
+      }
+      .select{
+        width:400px;
+        height:50px;
+        margin-left:55px;
+      }
+      .selt-btn{
+        height:50px;
+        width:85px;
+        margin-left:15px;
+        font-size:16px;
+        border-radius:5px;
+        outline:none;
+        border:1px solid #ccc;
+      }
+      .footer{
+        margin-top:70px;
+        padding-top:10px;
+        border-top:1px solid #ccc;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+
+
+{% block css %}
+
+{% endblock %}
+</head>
+<body >
+  <div class="main-body">
+{% block dltc %}
+    <nav class="navbar navbar-default" style="border-radius: 0px;">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+{#          <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span></a>#}
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="/user/ucenter/">个人中心</a></li>
+                    <li><a href="/user/push_sug">提出创意</a></li>
+                    <li><a href="/sug/look_sfsl">需你处理</a></li>
+                    <li><a href="/user/jifen">个人积分</a></li>
+                    <li><a href="/sousuo">创意查询</a></li>
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                        {% block denglu %}<li><a href="/user/login" >登录</a></li>{% endblock %}
+                        <li><a href="/user/register">注册</a></li>
+                    </ul>
+
+            </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+<div class="row" style="margin:0;">
+{% block sousuo %}
+
+
+  <div class="col-lg-6" style="margin:0 auto; width:100%">
+    <div class="input-group selt-box">
+        <form action="/select/" method="post">
+                {% csrf_token %}
+              <!-- <input type="text" class="form-control" name="flxx" placeholder="请输入你要查找的字段..."> -->
+              <select class="select" name="flxx" id="fl">
+                <option value="0">请选择你要搜素的分类</option>
+                <option value="成本节约">成本节约</option>
+                <option value="员工激励">员工激励</option>
+                <option value="质量改善">质量改善</option>
+                <option value="设备改善">设备改善</option>
+                <option value="安全改善">安全改善</option>
+                <option value="环境改善">环境改善</option>
+                <option value="管理改善">管理改善</option>
+                <option value="其他">其他</option>
+              </select>
+
+
+              <input type="submit" name="sousuo" value="搜索" class="selt-btn">
+
+        </form>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+
+{% endblock %}
+
+{% endblock %}
+{% block reg %} {% endblock %}
+
+{% block center %}
+
+
+</div>
+{% endblock %}
+<footer class="footer">
+
+      <div class="container1" align="center">
+        <p>CopyRight © 2018 若谷技术有限公司 All Rights Reserved</p>
+            <p>电话：010-****888    京ICP备*******8号</p>
+      </div>
+
+</footer>
+
+{% block js %}
+
+{% endblock %}
+</body>
+</html>

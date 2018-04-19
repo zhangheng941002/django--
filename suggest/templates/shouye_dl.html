@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block denglu %}
+  <li><a href="/user/logout" >退出</a></li>
+{% endblock %}
+{% block sousuo %}
+
+{% endblock %}
+
+{% block css %}
+    {% load static from staticfiles %}
+    <style type="text/css">
+    .img{
+        margin:0 auto;
+        text-align:center;
+        width:100%;
+    }
+
+    </style>
+{% endblock %}
+
+{% block center %}
+
+
+    <div class="img">
+        <img src="{% static 'beijing/beijing.jpg'%}" alt="">
+    </div>
+
+
+
+
+{% endblock %}

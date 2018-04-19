@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block sousuo %}
+
+{% endblock %}
+
+{% block css %}
+    {% load static from staticfiles %}
+    <style type="text/css">
+    .img{
+        margin:0 auto;
+        text-align:center;
+        width:100%;
+    }
+
+    </style>
+{% endblock %}
+
+{% block center %}
+
+
+    <div class="img">
+        <img src="{% static 'beijing/beijing.jpg'%}" alt="">
+    </div>
+
+{#<ul >#}
+{#    {% for sug in page %}#}
+{#        <a href="/show_info/{{ sug.id }}"><li>{{ sug.title }}</li></a>#}
+{#    {% endfor %}#}
+{#</ul>#}
+{##}
+{#    <nav aria-label="Page navigation"  style="margin-left: 300px; position: absolute;bottom: 35px">#}
+{##}
+{#        <ul class="pagination">#}
+{#    <li>#}
+{#      <a href="1" aria-label="Previous">#}
+{#        <span aria-hidden="true">首页</span>#}
+{#      </a>#}
+{#    </li>#}
+{#      {% for index in page.paginator.page_range %}#}
+{#          {% if index <= 10 %}#}
+{#            <li> <a href="{{ index }}">{{ index }}</a></li>#}
+{#          {% else %}#}
+{#              <li>...</li>#}
+{#          {% endif %}#}
+{#    {% endfor %}#}
+{##}
+{#    <li>#}
+{#      <a href="{{ last }}" aria-label="Next">#}
+{#        <span aria-hidden="true">尾页</span>#}
+{#      </a>#}
+{#    </li>#}
+{#  </ul>#}
+{##}
+{#</nav>#}
+
+
+{% endblock %}

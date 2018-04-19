@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block denglu %}
+  <li><a href="/user/logout" >退出</a></li>
+{% endblock %}
+
+{% block sousuo %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+    .show-info .ula,.show-info .chuli,.show-info .jieguo{
+      display: inline-block;
+      width:33%;
+      text-indent: 2em;
+    }
+    .ul-box{
+      height:35px;
+      background: #eee;
+      line-height: 35px;
+      margin-top:10px;
+    }
+    .ul-box div{
+      width:33%;
+      float:left;
+      text-indent: 2em;
+    }
+    .page{
+      height:70px;
+      overflow: hidden;
+    }
+    .page-box{
+      position: relative;
+    }
+    .page-box .pagination.page-ul{
+      position: absolute;
+      left:50%;
+      transform: translateX(-50%);
+    }
+
+    .input-pag,.input-submit{
+      width:40px;
+      height:33px;
+      outline: none;
+      border:1px solid #ccc;
+      border-radius:3px;
+    }
+    .input-pag{
+      width:50px;
+      padding-left:15px;
+    }
+
+    .for-box{
+      width:800px;
+      line-height: 45px;
+      margin-left:55px;
+      overflow: hidden;
+    }
+    .for-box div{
+      width:50%;
+      float:left;
+      font-size:16px;
+    }
+    .sug-info{
+      width:100px;
+      display: inline-block;
+    }
+    .sug-msg{
+      width:300px;
+      display: inline-block;
+      margin-left:290px;
+    }
+
+
+</style>
+{% endblock %}
+
+{% block center %}
+
+<div class="for-box">
+  <div class="chuangyi">创意</div>
+  <div class="tichuzhe">提出者</div>
+</div>
+
+
+
+
+<ul style="margin-left:20px;">
+    {% for sug in page %}
+        <li>
+          <a class="sug-info" href="/sug/show_info/{{ sug.id }}">{{ sug.title }}</a>
+          <span class="sug-msg">{{sug.uname}}</span>
+        </li>
+    {% endfor %}
+</ul>
+<div class="page">
+<nav aria-label="Page navigation" class="page-box">
+
+        <ul class="pagination page-ul">
+    <li>
+      <a href="1" aria-label="Previous">
+        <span aria-hidden="true">第一页</span>
+      </a>
+    </li>
+      {% for index in page.paginator.page_range %}
+          {% if index <= 10 %}
+            <li> <a href="{{ index }}">{{ index }}</a></li>
+
+          {% endif %}
+    {% endfor %}
+
+    <li>
+      <a href="{{ last }}" aria-label="Next">
+        <span aria-hidden="true">尾页</span>
+      </a>
+    </li>
+    <div style="float: left">
+      <form action="/sug/look_sfsl/" method="get">
+          &nbsp;
+          <input class="input-pag" type="text" name="input_page">
+          <input class="input-submit" type="submit" value="跳转">
+
+      </form>
+  </div>
+  </ul>
+
+</nav>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block denglu %}
+  <li><a href="/user/logout" >退出</a></li>
+{% endblock %}
+
+{% block sousuo %}
+
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+	.msg-text{
+		border:1px solid #aaa;
+		width:800px;
+		height:200px;
+		min-height: 200px;
+		height:auto!important;
+		padding:20px;
+		border-radius:7px;
+	}
+	.msg-box{
+		width:260px;
+		border-bottom: 1px dashed #ccc;
+	}
+	.xq{
+		line-height: 35px;
+		text-indent:10px;
+	}
+	span{
+		display: inline-block;
+		width:90px;
+		line-height: 30px;
+		text-indent:10px;
+	}
+</style>
+{% endblock %}
+
+{% block center %}
+    <div id="center" style="margin: 0  0  100px 50px">
+        <form action="/user/selove_sug/" method="post">
+            {% csrf_token %}
+            <div class="msg-box"><span>创意标题：</span>{{ sug.title }}</div>
+            <div class="msg-box"><span>发 表 人 ：</span>{{ sug.uname }}</div>
+
+            <div class="xq">详情：</div>
+            <div class="msg-text">{{ sug.content }}</div>
+
+
+            <!-- <textarea name="content" id="content" cols="100" rows=5" style="resize:none" readonly>{{ sug.content }}</textarea><br> -->
+
+
+        </form>
+    </div>
+{% endblock %}

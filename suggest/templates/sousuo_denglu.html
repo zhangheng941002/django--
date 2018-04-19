@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block denglu %}
+  <li><a href="/user/logout" >退出</a></li>
+{% endblock %}
+
+{% block css %}
+    {% load static from staticfiles %}
+    <style type="text/css">
+    .img{
+        margin:0 auto;
+        text-align:center;
+        width:100%;
+    }
+
+    </style>
+{% endblock %}
+
+{% block center %}
+
+{#     这里如果你觉得很突兀，你可以把下面的注释掉的代码给解开，就会显示首页的图片#}
+{#    <div class="img">#}
+{#        <img src="{% static 'beijing/beijing.jpg'%}" alt="">#}
+{#    </div>#}
+
+
+
+
+{% endblock %}

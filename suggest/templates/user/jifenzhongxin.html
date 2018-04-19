@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block denglu %}
+  <li><a href="/user/logout" >退出</a></li>
+{% endblock %}
+
+{% block sousuo %}
+
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+    .show-info .ula,.show-info .chuli,.show-info .jieguo{
+      display: inline-block;
+      width:33%;
+      text-indent: 2em;
+    }
+    .ul-box{
+      height:35px;
+      background: #eee;
+      line-height: 35px;
+      margin-top:10px;
+    }
+    .ul-box div{
+      width:33%;
+      float:left;
+      text-indent: 2em;
+    }
+    .page{
+      height:70px;
+      overflow: hidden;
+    }
+    .page-box{
+      position: relative;
+    }
+    .page-box .pagination.page-ul{
+      position: absolute;
+      left:50%;
+      transform: translateX(-50%);
+    }
+
+    .input-pag,.input-submit{
+      width:40px;
+      height:33px;
+      outline: none;
+      border:1px solid #ccc;
+      border-radius:3px;
+    }
+    .input-pag{
+      width:50px;
+      padding-left:15px;
+    }
+   .jfjj{
+      width:600px;
+      overflow: hidden;
+      margin: 15px 30px;
+    }
+    .jfjj div{
+      width:50%;
+      float:left;
+      font-size:16px;
+    }
+
+
+</style>
+{% endblock %}
+
+{% block center %}
+
+
+<div class="jfjj">
+	<div class="jf">当月积分：{{ jf }}</div>
+	<div class="jj">积累奖金：{{ jj }} 元</div>
+</div>
+
+<div class="ul-box">
+  <div class="ul-left">创意</div>
+  <div class="ul-middle">创意等级</div>
+  <div class="ul-right">执行人</div>
+</div>
+<div class="show-info">
+    {% for sug in page %}
+
+        <div class="ula">
+          <a  href="/show_info/{{ sug.id }}">{{ sug.title }}</a>
+        </div>
+        <div class="chuli">
+       
+        
+        <!-- 是否浏览 -->
+        <input class="yes" type="text" value="{{ sug.dj }}" style="border: 0px" readonly="readonly">
+       
+       
+        </div>
+        <div class="jieguo">
+        
+        
+        <!-- 是否浏览 -->
+        <input class="yes" type="text" value="{{ sug.zxr }}" style="border: 0px" readonly="readonly">
+        
+       
+        </div>
+
+
+    {% endfor %}
+</div>
+<div class="page">
+<nav aria-label="Page navigation" class="page-box">
+
+        <ul class="pagination page-ul">
+    <li>
+      <a href="1" aria-label="Previous">
+        <span aria-hidden="true">第一页</span>
+      </a>
+    </li>
+      {% for index in page.paginator.page_range %}
+          {% if index <= 10 %}
+            <li> <a href="{{ index }}">{{ index }}</a></li>
+
+          {% endif %}
+    {% endfor %}
+
+    <li>
+      <a href="{{ last }}" aria-label="Next">
+        <span aria-hidden="true">尾页</span>
+      </a>
+    </li>
+    <div style="float: left">
+      <form action="/user/jifen/" method="get">
+          &nbsp;
+          <input class="input-pag" type="text" name="input_page">
+          <input class="input-submit" type="submit" value="跳转">
+
+      </form>
+  </div>
+  </ul>
+
+</nav>
+</div>
+
+
+{% endblock %}

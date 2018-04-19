@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block denglu %}
+  <li><a href="/user/logout" >退出</a></li>
+{% endblock %}
+
+{% block center %}
+<ul >
+    {% for sug in page %}
+        <a href="/sug/chuli/"><li>{{ sug.title }}</li></a>
+    {% endfor %}
+</ul>
+
+    <nav aria-label="Page navigation"  style="margin-left: 300px; position: absolute;bottom: 35px">
+
+        <ul class="pagination">
+    <li>
+      <a href="1" aria-label="Previous">
+        <span aria-hidden="true">第一页</span>
+      </a>
+    </li>
+      {% for index in page.paginator.page_range %}
+          {% if index <= 10 %}
+            <li> <a href="{{ index }}">{{ index }}</a></li>
+
+          {% endif %}
+    {% endfor %}
+
+    <li>
+      <a href="{{ last }}" aria-label="Next">
+        <span aria-hidden="true">尾页</span>
+      </a>
+    </li>
+
+
+             <div style="float: left;">
+            <form action="/user/ucenter" method="get">
+                &nbsp;
+                <input type="text" style="width: 36px" name="input_page">
+                <input type="submit" value="跳转">
+
+            </form>
+        </div>
+  </ul>
+
+</nav>
+
+
+{% endblock %}

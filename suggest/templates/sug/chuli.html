@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block denglu %}
+  <li><a href="/user/logout" >退出</a></li>
+{% endblock %}
+{% block sousuo %}
+
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+    #center{
+        width:750px;
+        margin:0 auto 80px;
+    }
+    .cn-span{
+        display: inline-block;
+        width:65px;
+        margin-left:45px;
+    }
+    input[name="tijiao"]{
+        width:60px;
+        height:30px;
+        outline: none;
+        border:1px solid #aaa;
+        border-radius:5px;
+        font-size:16px;
+        float:right;
+        margin: 15px 30px 0 0;
+    }
+
+</style>
+{% endblock %}
+
+{% block center %}
+    <div id="center">
+        <form action="/sug/result/" method="post">
+            {% csrf_token %}
+{#            隐藏字段，用于获取创意的id,等管理者浏览后，修改创意的is_sl属性值#}
+            <input type="hidden" name="sug_id" value="{{ sug_id }}">
+            提交人：&nbsp;<input type="text" name="tjr" value="{{ sug_name }}" style="border: 0px" readonly="readonly"></br>
+            创意详情：<br><textarea name="sug_content" id="content" cols="100" rows=5" readonly style="resize:none">{{ sug_content }}</textarea><br>
+            意见：<br/><span class="cn-span">采　纳：</span><input type="radio"name="cl" value="A">A&nbsp;&nbsp;&nbsp;<input type="radio"name="cl" value="B">B&nbsp;&nbsp;&nbsp;<input type="radio"name="cl" value="C">C&nbsp;&nbsp;&nbsp;<input type="radio"name="cl" value="D">D&nbsp;&nbsp;&nbsp;</br>
+            <span class="cn-span">不采纳：</span><input type="radio"name="cl" value="不采纳">
+            </select><br><br>
+
+            意见详情：<br><textarea name="yjxq" id="content" cols="100" rows="5"style="resize:none"></textarea><br>
+            处理人：&nbsp;&nbsp;&nbsp;
+            <select name="clr" id="clr" style="width: 88px;" >
+                <option value="">--请选择--</option>
+            {% for p in clr %}
+                <option value="{{ p.clr_name }}" >{{ p.clr_name }}</option>
+
+            {% endfor %}
+            </select>
+            <input type="submit" name="tijiao" value="提交">
+        </form>
+    </div>
+{% endblock %}

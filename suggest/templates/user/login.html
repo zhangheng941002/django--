@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block sousuo %}
+
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript">
+
+	window.onload = function(){
+		yan_zheng_ma();
+	};
+
+
+	 function yan_zheng_ma(){
+		
+
+	    $.get('/user/yanzhengma/',function(data){
+	    	
+	        $(".yzm").text(data.st);
+	    });
+	}
+
+
+</script>
+{% endblock %}
+
+{% block css %}
+<style type="text/css">
+	#div1{
+		margin:15px auto;
+		width:500px;
+		height:400px;
+	}
+	#div1 form{
+		border:1px solid #aaa;
+		width:400px;
+		padding:25px 20px 25px 80px;
+		background: #eee;
+		border-radius:7px;
+		margin:0 auto;
+		position: relative;
+	}
+	.yzm{
+		margin-left:25px;
+		margin-bottom:-10px;
+		display: inline-block;
+		padding:5px;
+		border-radius:5px;
+		background: yellowgreen;
+		width:55px;
+		height:30px;
+		text-align:center;
+	}
+	#zc{
+		margin: 25px 0 0 50px;
+		height:30px;
+		border-radius: 5px;
+		border:1px solid #aaa;
+		font-size:16px;
+	}
+	.shuaxin{
+		width:40px;
+		height:30px;
+		text-align:center;
+		line-height: 30px;
+		margin-left:15px;
+		display: inline-block;
+		border:1px solid #369;
+		background: #eee;
+		border-radius:5px;
+		
+	}
+	.shuaxin:hover{
+		text-decoration: none;
+	}
+</style>
+{% endblock %}
+
+{% block reg %}
+    <div id=div1>
+        <form action="/user/login/" method="post">
+            {% csrf_token %}
+            用户名：<input type="text" name="username" value="{{ un  }}"></br><span style="position:absolute;left:140px;top:50px;color:#f00">{{ps}}</span></br>
+            密　码：<input type="password" name="password" value="{{ ps }}"></br></br>
+            验证码：<input type="text"name="yzm" style="width: 80px;" value="{{ yzmcw }}"><span class="yzm" name="scyzm"></span><a class="shuaxin" href="/user/login/">刷新</a>
+            </br>
+            <input id="zc" name="dl" type="submit" value="登陆" style="width: 150px">
+
+        </form>
+    </div>
+
+{#{% block denglu %}#}
+{#  <li><a href="/user/logout" >退出</a></li>#}
+{#{% endblock %}#}
+
+{% endblock reg %}
