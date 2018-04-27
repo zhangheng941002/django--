@@ -2,8 +2,11 @@
     一个主函数，在suggest 下的views.py中
 
 2、需要执行模型的迁移,这样数据库中就会生成相应的表格
-    python manage.py makemigrations user,sug
-    python manage.py migrate
+    第一、python manage.py makemigrations sug </br>
+    第二、python manage.py makemigrations user </br>
+    第三、python manage.py migrate sug </br>
+    第四、python manage.py migrate user </br>
+    第五、python manage.py migrate </br>
 
 3、创建超级管理员用户
     python manage.py createsuperuser 回车
